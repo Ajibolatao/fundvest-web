@@ -1,0 +1,71 @@
+<div class="transaction">
+  <!-- MAIN -->
+  <main class="main">
+    <!-- LEFT -->
+    <%- include ('../partials/sidebar', {active: 'transaction'}) %>
+    <!-- Left ends here -->
+
+    <!-- RIGHT -->
+    <div class="main__right">
+      <!-- TOP BAR -->
+      <div class="top-bar">
+        <div>
+          <i class="bi bi-arrow-left text-warning"></i>
+        </div>
+        <div class="">
+          <a href="/logout" class="text-warning">logout</a>
+        </div>
+      </div>
+
+      <div class="main_box">
+        <h4 class="green">All Transactions</h4>
+
+        <!-- ALL ACTIVITIES -->
+        <div class="activities_list">
+          <!-- LIST FROM THE LATEST -->
+          <% for (i = activities.length-1; i >= 0; i--) { %>
+          <div class="activities_item">
+            <div class="left">
+              <div class="name">
+                <%= activities[i].name %> <%= activities[i].type %>
+              </div>
+              <div class="date"><%= activities[i].date.toLocaleString() %></div>
+            </div>
+            <div class="right">
+              <!-- IF WALLET IS CREDITTED -->
+              <% if (activities[i].type === 'wallet_credited') { %>
+              <span class="text-success">
+                ₦ <%=
+                transactions[i].amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                ",") %>
+              </span>
+              <!-- IF IT IS DEBIT -->
+              <% } else if (activities[i].type === 'withdraw_to_bank') { %>
+              <span class="text-warning">
+                ₦ <%=
+                activities[i].amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                ",") %>
+              </span>
+              <!-- IF IT IS SUBSCRIPTION -->
+              <% } else { %>
+              <span class="text-secondary">
+                ₦ <%=
+                activities[i].amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                ",") %>
+              </span>
+              <% } %>
+            </div>
+          </div>
+          <hr />
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- SPACE -->
+  <div class="container py-3"></div>
+  <div class="container py-3"></div>
+
+  <!-- FOOTER -->
+  <%- include ('../partials/footer', {active:'transaction'}) %>
+</div>

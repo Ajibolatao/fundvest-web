@@ -1,0 +1,293 @@
+<div class="local">
+  <div class="container">
+    <h2 class="display-6 text-center py-4">Activities</h2>
+  </div>
+
+  <!-- NAV -->
+  <div class="container bg-info p-2">
+    <nav class="nav nav-pills nav-justified align-items-center">
+      <a class="nav-item nav-link text-white" href="/local"> Home</a>
+      <!-- ACTIVITIES DROP DOWN -->
+      <div class="dropdown">
+        <div
+          class="nav-item nav-link dropdown-toggle active"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Activities
+        </div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/local/activities">All </a>
+          <a class="dropdown-item" href="/local/activities/subscriptions"
+            >Subscriptions</a
+          >
+          <a class="dropdown-item" href="/local/activities/request">Requests</a>
+          <a class="dropdown-item" href="/local/activities/request/pending"
+            >Request | Pending</a
+          >
+          <a class="dropdown-item" href="/local/activities/request/successful"
+            >Request | Successful</a
+          >
+          <a class="dropdown-item" href="/local/activities/request/failed"
+            >Request | Failed</a
+          >
+        </div>
+      </div>
+
+      <a class="nav-item nav-link text-white" href="/local/search-user">User</a>
+      <a class="nav-item nav-link text-white" href="/local/set-forex">Forex</a>
+    </nav>
+  </div>
+
+  <!-- ACTIVITY LIST -->
+  <div class="container">
+    <!-- SPACE -->
+    <div class="container py-4"></div>
+
+    <!-- ALL ACTIVITIES -->
+    <% for (i = activities.length-1; i >= 0; i--) { %>
+    <div id="accordion">
+      <div class="card">
+        <!-- TABLE DISPLAY -->
+        <div class="card-header d-flex justify-content-between" id="headingOne">
+          <div
+            class="
+              d-flex
+              justify-content-between
+              align-items-center
+              w-100
+              text-left
+            "
+          >
+            <div class="w-100"><small><%= activities[i].name %></small></div>
+            <div class="w-100"><small><%= activities[i].status %></small></div>
+            <div class="w-100">
+              <small
+                >₦ <%=
+                activities[i].amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                ",") %></small
+              >
+            </div>
+          </div>
+
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link"
+              data-toggle="collapse"
+              data-target="#collapseOne<%= [i] %>"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              <i class="bi bi-list"></i>
+            </button>
+          </h5>
+        </div>
+        <div
+          id="collapseOne<%= [i] %>"
+          class="collapse"
+          aria-labelledby="headingOne"
+          data-parent="#accordion"
+        >
+          <!-- HIDDEN ACCORDION -->
+          <div class="card-body">
+            <!-- IF ACTIVITY IS A REQUEST -->
+            <% if (activities[i].type === 'request') { %>
+
+            <!-- IF REQUEST IS BANK WITHDRAWAL -->
+            <div>
+              <% if (activities[i].name === 'bank withdrawal') { %>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item w-50">
+                  <small><strong>Name :</strong></small>
+                </li>
+                <li class="list-group-item w-50">
+                  <small
+                    ><%= activities[i].user.firstname %> <%=
+                    activities[i].user.lastname %></small
+                  >
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal w-100">
+                <li class="list-group-item w-50">
+                  <small><strong>CustomerID :</strong></small>
+                </li>
+                <li class="list-group-item w-50">
+                  <small><%= activities[i].user.customerId %></small>
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal w-100">
+                <li class="list-group-item w-50">
+                  <small><strong>Naira Wallet Balnce:</strong></small>
+                </li>
+                <li class="list-group-item w-50">
+                  <small
+                    >₦ <%=
+                    activities[i].user.nairaWallet.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                    ",") %></small
+                  >
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal w-100">
+                <li class="list-group-item w-50">
+                  <small><strong>Bank Info:</strong></small>
+                </li>
+                <li class="list-group-item w-50">
+                  <small
+                    ><%= activities[i].user.banks[0].bankName %>, <%=
+                    activities[i].user.banks[0].accountNumber %></small
+                  >
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal w-100">
+                <li class="list-group-item w-50">
+                  <small><strong>Withdraw amount:</strong></small>
+                </li>
+                <li class="list-group-item w-50">
+                  <small
+                    >₦ <%=
+                    activities[i].amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                    ",") %></small
+                  >
+                </li>
+              </ul>
+
+                <!-- IF ACTIVITY IS PENDING -->
+                <% if (activities[i].status === 'pending') { %>
+                  <!-- FORM -->
+                  <div class="container pt-3">
+                    <form
+                      method="POST"
+                      action="/debit-wallet/activity/<%= activities[i]._id %>?_method=PUT"
+                      class="
+                        form-inline
+                        d-flex
+                        justify-content-between
+                        align-items-center
+                      "
+                    >
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control-sm"
+                          value="<%= activities[i].amount %>"
+                          name='amount'
+                        />
+                      </div>
+                      <div class="form-group">
+                        <select name="status" class="form-control-sm" required>
+                          <option value="successful">Successful</option>
+                          <option value="failed">Failed</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <input type="submit" class="btn btn-outline-primary" />
+                      </div>
+                    </form>
+                  </div>
+                <% } %>
+
+              <% } %>
+            </div>
+
+            <!-- IF REQUEST IS BANK DEPOSIT -->
+            <div>
+              <% if (activities[i].name === 'bank deposit') { %>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item w-50">
+                  <small><strong>Name :</strong></small>
+                </li>
+                <li class="list-group-item w-50">
+                  <small
+                    ><%= activities[i].user.firstname %> <%=
+                    activities[i].user.lastname %></small
+                  >
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal w-100">
+                <li class="list-group-item w-50">
+                  <small><strong>CustomerID :</strong></small>
+                </li>
+                <li class="list-group-item w-50">
+                  <small><%= activities[i].user.customerId %></small>
+                </li>
+              </ul>
+
+              <ul class="list-group list-group-horizontal w-100">
+                <li class="list-group-item w-50">
+                  <small><strong>Deposit amount:</strong></small>
+                </li>
+                <li class="list-group-item w-50">
+                  <small
+                    >₦ <%=
+                    activities[i].amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                    ",") %></small
+                  >
+                </li>
+              </ul>
+              <ul class="list-group list-group-horizontal w-100">
+                <li class="list-group-item w-50">
+                  <small><strong>Receipt :</strong></small>
+                </li>
+                <li class="list-group-item w-50">
+                  <small>
+                    <a
+                      href="<%= activities[i].receipt %>"
+                      target="_blank"
+                      class="btn btn-sm btn-outline-primary"
+                      >View</a
+                    >
+                  </small>
+                </li>
+              </ul>
+
+              <!-- IF ACTIVITY IS PENDING -->
+                <% if (activities[i].status === 'pending') { %>
+                  <!-- FORM -->
+                  <div class="container pt-3">
+                    <form
+                      method="POST"
+                      action="/credit-wallet/activity/<%= activities[i]._id %>?_method=PUT"
+                      class="
+                        form-inline
+                        d-flex
+                        justify-content-between
+                        align-items-center
+                      "
+                    >
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control-sm"
+                          value="<%= activities[i].amount %>"
+                          name="amount"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <select name="status" class="form-control-sm" required>
+                          <option value="successful">Successful</option>
+                          <option value="failed">Failed</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-sm" />
+                      </div>
+                    </form>
+                  </div>
+                <% } %>
+
+              <% } %>
+            </div>
+
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% } %>
+  </div>
+  <!-- ACTIVITY LIST ENDS -->
+</div>

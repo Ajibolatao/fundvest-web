@@ -1,0 +1,100 @@
+<!-- FOOTER -->
+
+<footer class="footer">
+    <ul class="footer__menu__items">
+      <!-- DASHBOARD OR HOME -->
+      <li>
+        <!-- CHECK ACTIVE CLASS -->
+        <% if (active === 'dashboard') { %>
+          <a href="/dashboard" class="text-warning">
+          <p>
+            <i class="bi bi-house text-warning"></i>   
+          </p>
+          <p>Home</p>
+        </a>
+        <% } else { %>
+          <a href="/dashboard">
+          <p>
+            <i class="bi bi-house "></i>   
+          </p>
+          <p>Home</p>
+        </a>
+        <% } %>
+        
+      </li>
+      <!-- WALLET -->
+      <li>
+        <% if (active === 'wallet') { %>
+          <a href="/wallet" class="text-warning">
+            <p>
+              <i class="bi bi-wallet2 text-warning"></i>
+            </p>
+            <p>Wallet</p>
+          </a>
+          <% } else { %>
+            <a href="/wallet">
+              <p>
+                <i class="bi bi-wallet2"></i>
+              </p>
+              <p>Wallet</p>
+            </a>
+        <% } %>
+      </li>
+      <!-- PORTFOLIO -->
+      <li>
+        <% if (active === 'portfolio') { %>
+          <a href="/portfolio" class="text-warning">
+            <p>
+              <i class="bi bi-cash-stack text-warning"></i>
+            </p>
+            <p>Portfolio</p>
+          </a>
+          <% } else { %>
+            <a href="/portfolio">
+              <p>
+                <i class="bi bi-cash-stack"></i>
+              </p>
+              <p>Portfolio</p>
+            </a>
+        <% } %>
+      </li>
+      <!-- TRANSACTION -->
+      <li>
+        <% if (active === 'transaction') { %>
+          <a href="/transaction" class="text-warning">
+            <p>
+              <i class="bi bi-calendar-event text-warning"></i>
+            </p>
+            <p>Transaction</p>
+          </a>
+          <% } else { %>
+            <a href="/transaction">
+              <p>
+                <i class="bi bi-calendar-event"></i>
+              </p>
+              <p>Transaction</p>
+            </a>
+        <% } %>
+      </li>
+      <!-- PROFILE -->
+      <li>
+        <% if (active === 'profile') { %>
+          <a href="/profile" class="text-warning">
+            <p>
+              <i class="bi bi-person text-warning"></i>
+            </p>
+            <p>Profile</p>
+          </a>
+          <% } else { %>
+            <a href="/profile">
+              <p>
+                <i class="bi bi-person"></i>
+              </p>
+              <p>Profile</p>
+            </a>
+        <% } %>
+      </li>
+    </ul>
+  </footer>
+
+  

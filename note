@@ -1,0 +1,15 @@
+ACTIVITIES
+
+name :  classic, premium, elite bank deposit, bank withdrawal,
+
+type: - subscription (classic, premium, elite), request (bank deposit, bank withdrawal)
+
+status: pending (request), failed (request), completed (request), matured (subscription)
+
+date
+
+amount
+
+user
+
+

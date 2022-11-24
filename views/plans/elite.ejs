@@ -1,0 +1,93 @@
+<script src="/scripts/plans.js" defer></script>
+
+<!-- ELITE -->
+<div class="elite">
+  <!-- MAIN -->
+  <main class="main">
+    <!-- LEFT -->
+    <%- include ('../partials/sidebar', {active: 'dashboard'}) %>
+    <!-- Left ends here -->
+
+    <!-- RIGHT -->
+    <div class="main__right">
+      <!-- TOP BAR -->
+      <div class="top-bar">
+        <div>
+          <i class="bi bi-arrow-left text-warning"></i>
+        </div>
+        <div class="">
+          <a href="/logout" class="text-warning">logout</a>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center pt-4">
+        <!-- FORM -->
+        <form action="/purchase-plan" method="POST" class="form p-3 m-2">
+          <div class="d-none">Interest rate <span class="rate">27.6</span></div>
+          <div>
+            Interest rate <span class="text-warning">2.3% / month</span>
+          </div>
+          <div class="header">
+            <h4>Elite</h4>
+          </div>
+
+          <div class="form-group">
+            <label>Enter your principal</label>
+            <input
+              class="form-control"
+              type="number"
+              name="principal"
+              id="principalBox"
+              min="1000000"
+              placeholder="Min. ₦1,000,000"
+              required
+              oninvalid="this.setCustomValidity('Minimum principal is ₦1,000,000')"
+              oninput="this.setCustomValidity('')"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Duration</label>
+            <select name="duration" id="durationBox" class="form-control">
+              <option value="9">9 months</option>
+              <option value="12">12 months</option>
+            </select>
+          </div>
+
+          <div class="form-group d-none">
+            <label>Rate</label>
+            <input
+              type="number"
+              name="rate"
+              value="27.6"
+              class="form-control"
+              readonly
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Plan: Elite</label>
+            <input
+              type="text"
+              name="plan"
+              value="elite"
+              class="form-control d-none"
+              readonly
+            />
+          </div>
+
+          <div class="form-group">
+            Total amount <span class="amount">00000</span>
+          </div>
+
+          <div class="form-group d-flex justify-content-center">
+            <input type="submit" value="Subscribe" class="my_btn btn_green" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <%- include ('../partials/footer', {active: 'dashboard'}) %>
+</div>

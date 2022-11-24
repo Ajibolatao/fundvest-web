@@ -1,0 +1,92 @@
+<div class="portfolio">
+  <!-- MAIN -->
+  <main class="main">
+    <!-- LEFT -->
+    <%- include ('../partials/sidebar', {active: 'portfolio'}) %>
+    <!-- Left ends here -->
+
+    <!-- RIGHT -->
+    <div class="main__right">
+      <!-- TOP BAR -->
+      <div class="top-bar">
+        <div>
+          <i class="bi bi-arrow-left text-warning"></i>
+        </div>
+        <div class="text-warning">
+          <a href="/logout" class="text-warning">logout</a>
+        </div>
+      </div>
+
+      <!--  -->
+      <div class="container py-4 portfolio_title">
+        <h4 class="green">Portfolio</h4>
+      </div>
+
+      <!-- PORTFOLIO LIST -->
+      <div class="portfolio_list">
+        <% for (i = portfolios.length-1; i >= 0; i--) { %>
+        <!-- PORTFOLIO ITEM -->
+        <div class="portfolio_item">
+          <!-- UP -->
+          <div class="up">
+            <h3><%= portfolios[i].plan %></h3>
+          </div>
+          <!-- DOWN -->
+          <div class="down">
+            <div class="left">
+              <div class="top">
+                <div class="portfolio_gray">Capital</div>
+                <div class="portfolio_amt">
+                  ₦ <%=
+                  portfolios[i].principal.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                  ",") %>
+                </div>
+              </div>
+              <div class="bottom">
+                <div class="portfolio_gray">Total</div>
+                <div class="portfolio_amt">
+                  ₦ <%=
+                  portfolios[i].proposedTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                  ",") %>
+                </div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="top">
+                <div class="portfolio_gray">Interest accrued</div>
+                <div class="portfolio_amt">
+                  ₦ <%=
+                  Number(portfolios[i].currentInterest).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                  ",") %>
+                </div>
+              </div>
+              <div class="mid">
+                <div class="portfolio_gray">Total Interest</div>
+                <div class="portfolio_amt">
+                  ₦ <%=
+                  portfolios[i].proposedTotalInterest.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                  ",") %>
+                </div>
+              </div>
+              <div class="bottom">
+                <div class="portfolio_gray">Mat Date</div>
+                <div class="portfolio_amt text_sm portfolio_date">
+                  <%= portfolios[i].dueDate.toDateString() %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <% } %>
+      </div>
+
+      <!-- SPACE -->
+      <div class="container py-4"></div>
+      <div class="container py-4"></div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <%- include ('../partials/footer', {active:'portfolio'}) %>
+</div>

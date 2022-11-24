@@ -1,0 +1,134 @@
+<!-- EXCHANGE DOLLARS -->
+<div class="exchange-dollars">
+  <!-- MAIN -->
+  <main class="main">
+    <!-- LEFT -->
+    <%- include ('../partials/sidebar', {active: 'dashboard'}) %>
+    <!-- Left ends here -->
+
+    <!-- RIGHT -->
+    <div class="main__right">
+      <!-- TOP BAR -->
+      <div class="top-bar">
+        <div>
+          <i class="bi bi-arrow-left text-warning"></i>
+        </div>
+        <div class="">
+          <a href="/logout" class="text-warning">logout</a>
+        </div>
+      </div>
+
+      <!-- SPACE -->
+      <div class="p-4"></div>
+
+      <!-- TOP -->
+      <div class="container pt-4">
+        <h3 class="text-center pb-1">Fundvest Dollar</h3>
+      </div>
+
+      <!-- BALANCE -->
+      <div class="container balance-box d-flex justify-content-center">
+        <div class="balance">
+          <div class="balance__display">
+            <div class="balance__name"> Balance</div>
+            <div class="balance__amount">$ <%= activeUser.dollarWallet.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPACE -->
+      <div class="p-4"></div>
+
+      <!-- MID SECTION -->
+      <div class="container">
+        <h4 class="desc pb-3">What will you like to do?</h4>
+
+        <!-- BOXES -->
+        <div class="boxes">
+          <!-- WHAT IS FUNDVEST DOLLAR -->
+          <a href="#">
+            <div class="left">
+              <i class="bi bi-book"></i>
+            </div>
+            <div class="right">
+                <div class="top">What is Fundvest Dollar?</div>
+                <div class="bottom text-muted">Learn more about Fundvest dollar</div>
+            </div>
+          </a>
+          
+          <!-- CONVERT TO DOLLARS -->
+          <a href="/convert-to-dollars" class="mt-4">
+            <div class="left">
+              <i class="bi bi-arrow-right-circle"></i>
+            </div>
+            <div class="right">
+                <div class="top">Convert to dollars</div>
+                <div class="bottom text-muted">Transfer money from your wallet to your dollar balance.</div>
+            </div>
+          </a>
+          
+          <!-- WITHDRAW TO WALLET -->
+          <a href="/convert-to-naira" class="mt-4">
+            <div class="left">
+              <i class="bi bi-arrow-left-circle"></i>
+            </div>
+            <div class="right">
+                <div class="top">Withdraw your dollar balance</div>
+                <div class="bottom text-muted">Move your dollar balance to your wallet.</div>
+            </div>
+          </a>
+        </div>
+
+        <!-- SPACE -->
+        <div class="p-4"></div>
+        <div class="p-4"></div>
+      </div>
+
+
+
+        <!-- BUYING FORM -->
+        <!-- <div class="d-flex justify-content-center pt-4">
+
+          <form
+            action="/purchase-plan"
+            method="POST"
+            class="form p-3 m-2"
+          >
+            
+            <div class="header d-flex justify-content-center">
+              <h3>Buy</h3>
+            </div>
+
+            <div class="form-group">
+              <input type="number" name="amount" class="form-control" placeholder="Buying amount">
+            </div>
+
+            <div class="form-group d-flex justify-content-center">
+              <input type="submit" value="Buy" class="btn btn-outline-primary" />
+            </div>
+          </form>
+        </div> -->
+        
+        <!-- WITHDRAW FORM -->
+        <!-- <div class="d-flex justify-content-center pt-4">
+          <form
+            action="/purchase-plan"
+            method="POST"
+            class="form p-3 m-2"
+          >
+            
+            <div class="header d-flex justify-content-center">
+              <h3>Withdraw</h3>
+            </div>
+
+            <div class="form-group d-flex justify-content-center">
+              <input type="submit" value="Buy" class="btn btn-outline-primary" />
+            </div>
+          </form>
+        </div> -->
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <%- include ('../partials/footer', {active: 'dashboard'}) %>
+ </div>

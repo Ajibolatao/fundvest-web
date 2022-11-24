@@ -1,0 +1,131 @@
+<div class="local">
+  <div class="container">
+    <h2 class="display-6 text-center py-4">Search user</h2>
+  </div>
+
+  <!-- NAV -->
+  <div class="container bg-info p-2">
+    <nav class="nav nav-pills nav-justified align-items-center">
+      <a class="nav-item nav-link text-white" href="/local"> Home</a>
+      <a class="nav-item nav-link text-white" href="/local/activities"
+        >Activities</a
+      >
+      <a class="nav-item nav-link active" href="/local/search-user">User</a>
+      <a class="nav-item nav-link text-white" href="/local/set-forex">Forex</a>
+    </nav>
+  </div>
+
+  <!-- FORM -->
+  <div class="container py-4">
+    <!-- FORM STARTS -->
+    <div class="row">
+      <form
+        class="col-6 offset-3 col-lg-4 offset-lg-4 py-4 form"
+        method="POST"
+        action="/local/search-user"
+      >
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Email or Customer ID"
+            name="customerId"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="submit"
+            value="Search"
+            class="btn btn-sm btn-block btn-outline-primary"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- LIST -->
+  <div class="container">
+    <div class="row">
+      <!-- USER  -->
+      <div class="my-center-width">
+        <div class="">
+          <% if (   user  !== null) { %>
+          <!-- UL -->
+          <div class="d-flex justify-content-around">
+            <div class="bg-white w-50 border p-2 pl-2">
+              <small ><strong>CustomerID :</strong></small>
+            </div>
+            <div class="bg-white w-50 border p-2 pl-2"><%= user.customerId %></div>
+          </div>
+          
+
+          <!-- UL -->
+          <div class="d-flex justify-content-around">
+            <div class="bg-white w-50 border p-2 pl-2">
+              <small ><strong>Fullname :</strong></small>
+            </div>
+            <div class="bg-white w-50 border p-2 pl-2"><%= user.firstname %> <%= user.lastname %></div>
+          </div>
+          
+          <!-- UL -->
+          <div class="d-flex justify-content-around">
+            <div class="bg-white w-50 border p-2 pl-2">
+              <small ><strong>Personal referral code :</strong></small>
+            </div>
+            <div class="bg-white w-50 border p-2 pl-2"><%= user.personalReferralCode %></div>
+          </div>
+          
+          <!-- UL -->
+          <div class="d-flex justify-content-around">
+            <div class="bg-white w-50 border p-2 pl-2">
+              <small ><strong>Wallet balance :</strong></small>
+            </div>
+            <div class="bg-white w-50 border p-2 pl-2">₦ <%= user.nairaWallet.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                    ",") %></div>
+          </div>
+          
+          <!-- UL -->
+          <div class="d-flex justify-content-around">
+            <div class="bg-white w-50 border p-2 pl-2">
+              <small ><strong>Dollar balance :</strong></small>
+            </div>
+            <div class="bg-white w-50 border p-2 pl-2">$ <%= user.dollarWallet.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                    ",") %></div>
+          </div>
+          
+          <!-- UL -->
+          <div class="d-flex justify-content-around">
+            <div class="bg-white w-50 border p-2 pl-2">
+              <small ><strong>Referral balance :</strong></small>
+            </div>
+            <div class="bg-white w-50 border p-2 pl-2">₦ <%= user.referralWallet.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                    ",") %></div>
+          </div>
+
+          <!-- UL -->
+          <div class="d-flex justify-content-around">
+            <div class="bg-white w-50 border p-2 pl-2">
+              <small ><strong>Email :</strong></small>
+            </div>
+            <div class="bg-white w-50 border p-2 pl-2"><%= user.email %></div>
+          </div>
+          
+          <!-- UL -->
+          <div class="d-flex justify-content-around">
+            <div class="bg-white w-50 border p-2 pl-2">
+              <small ><strong>Last loggedIn time :</strong></small>
+            </div>
+            <div class="bg-white w-50 border p-2 pl-2"><%= user.loggedInTime.toLocaleString() %></div>
+          </div>
+
+            <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPACE -->
+  <div class="container py-2"></div>
+</div>
+
+

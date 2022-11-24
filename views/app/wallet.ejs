@@ -1,0 +1,169 @@
+<!-- scripts -->
+<script src="/scripts/hideBalances.js" defer></script>
+
+<div class="wallet">
+  <!-- MAIN -->
+  <main class="main">
+    <!-- LEFT -->
+    <%- include ('../partials/sidebar', {active: 'wallet'}) %>
+    <!-- Left ends here -->
+
+    <!-- RIGHT -->
+    <div class="main__right">
+      <!-- TOP BAR -->
+      <div class="top-bar">
+        <div>
+          <i class="bi bi-arrow-left text-warning"></i>
+        </div>
+        <div class="">
+          <a href="/logout" class="text-warning">logout</a>
+        </div>
+      </div>
+
+      <!-- FLASH MESSAGES -->
+      <div class="container py-2">
+        <!-- Include partial -->
+        <%- include ('../partials/messages') %>
+      </div>
+
+
+      <!-- BALANCES -->
+      <div class="balances">
+        <div class="balance">
+          <div class="balance__display">
+            <div class="balance__name"> Wallet Balance</div>
+            <div class="hidden-balance">₦ xxxx <i class="bi bi-eye"></i></div>
+            <div class="balance__amount hide">₦ <%= activeUser.nairaWallet.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> <i class="bi bi-eye-slash"></i></div>
+          </div>
+        </div>
+        <div class="balance">
+          <div class="balance__display">
+            <div class="balance__name">Investments</div>
+            <div class="hidden-balance">₦ xxxx</div>
+            <div class="balance__amount hide">₦ <%= investments.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></div>
+          </div>
+        </div>
+        <div class="balance">
+          <div class="balance__display">
+            <div class="balance__name">Accrued interest</div>
+            <div class="hidden-balance">₦ xxxx</div>
+            <div class="balance__amount hide">₦ <%= interests.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></div>
+          </div>
+        </div>
+        <div class="balance">
+          <div class="balance__display">
+            <div class="balance__name">Dollar Balance</div>
+            <div class="hidden-balance">₦ xxxx</div>
+            <div class="balance__amount hide">₦ <%= activeUser.dollarWallet.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%></div>
+          </div>
+        </div>
+        <div class="balance">
+          <div class="balance__display">
+            <div class="balance__name">Referral Balance</div>
+            <div class="hidden-balance">₦ xxxx</div>
+            <div class="balance__amount hide">
+              ₦ <%=
+              activeUser.referralWallet.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- CREDIT FORM -->
+
+      <div class="d-flex justify-content-center py-4">
+        <!-- CREDIT WALLET FORM -->
+        <form
+          action="/credit/wallet/<%= user.email %>"
+          method="POST"
+          class="form px-4 py-2"
+          enctype="multipart/form-data"
+        >
+          <h4 class="display-6 text-center py-2">Credit Your Wallet</h4>
+
+          <!-- Amount -->
+          <div class="form-group">
+            <input
+              type="number"
+              name="amount"
+              placeholder="Enter the amount"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <!-- Receipt -->
+          <div class="form-group text-dark text_sm">
+            <label for="receipt">Upload payment receipt</label>
+            <input
+              type="file"
+              name="receipt"
+              id="receipt"
+              class="form-control-file"
+              required
+
+            />
+          </div>
+
+          <!-- Submit -->
+          <div class="form-group d-flex justify-content-center">
+            <input
+              type="submit"
+              value="Credit wallet"
+              class="btn btn-outline-primary"
+            />
+          </div>
+        </form>
+      </div>
+
+      <!-- SPACE -->
+      <div class="py-1"></div>
+
+      <!-- DEBIT FORM -->
+
+      <div class="d-flex justify-content-center">
+        <!-- DEBIT WALLET FORM -->
+        <form
+          action="/debit/wallet/<%= user.email %>"
+          method="POST"
+          class="form px-4 py-2"
+        >
+          <h4 class="display-6 py-2 text-center">Withdraw to bank</h4>
+
+          <!-- Amount -->
+          <div class="form-group">
+            <input
+              type="number"
+              name="amount"
+              max="<%= activeUser.nairaWallet %>"
+              placeholder="Enter amount to Withdraw"
+              class="form-control"
+              required
+              oninvalid="this.setCustomValidity('Insufficient wallet balance')"
+              oninput="this.setCustomValidity('')"
+            />
+          </div>
+
+          <!-- Submit -->
+          <div class="form-group d-flex justify-content-center">
+            <input type="submit" value="Withdraw" class="btn btn-outline-primary" />
+          </div>
+        </form>
+      </div>
+
+      <!-- SPACE -->
+      <div class="p-3"></div>
+
+    </div>
+  </main>
+
+  <!-- SPACE -->
+  <div class="py-4"></div>
+  <div class="py-4"></div>
+
+  <!-- FOOTER -->
+  <%- include ('../partials/footer', {active: 'wallet'}) %>
+</div>

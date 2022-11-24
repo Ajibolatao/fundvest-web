@@ -1,0 +1,134 @@
+<!-- scripts -->
+<script src="/scripts/hideBalances.js" defer></script>
+
+<div class="dashboard">
+  <!-- MAIN -->
+  <main class="main">
+    <!-- LEFT -->
+    <%- include ('../partials/sidebar', {active: 'dashboard'}) %>
+    <!-- Left ends here -->
+
+    <!-- RIGHT -->
+    <div class="main__right">
+      <!-- TOP BAR -->
+      <div class="top-bar">
+        <div>
+         <i class="bi bi-arrow-left text-warning"></i>
+        </div>
+        <div class="">
+          <a href="/logout" class="text-warning">logout</a>
+        </div>
+      </div>
+
+      <!-- PARTIALS -->
+      <div class="container">
+        <!-- Include partial -->
+        <%- include ('../partials/messages') %>
+      </div>
+
+      <!-- WELCOME -->
+      <div class="container pt-4">
+        <h5 class="green">Welcome, <%= activeUser.firstname %></h5>
+      </div>
+
+      <!-- BALANCES -->
+      <div class="balances">
+        <div class="balance">
+          <div class="balance__display">
+            <div class="balance__name"> Wallet Balance</div>
+            <div class="hidden-balance">₦ xxxx <i class="bi bi-eye"></i></div>
+            <div class="balance__amount hide">₦ <%= activeUser.nairaWallet.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> <i class="bi bi-eye-slash"></i></div>
+          </div>
+        </div>
+        <!-- <div class="balance">
+          <div class="balance__display">
+            <div class="balance__name">Investments</div>
+            <div class="hidden-balance">₦ xxxx</div>
+            <div class="balance__amount hide">₦ <%= investments.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></div>
+          </div>
+        </div>
+        <div class="balance">
+          <div class="balance__display">
+            <div class="balance__name">Accrued interest</div>
+            <div class="hidden-balance">₦ xxxx</div>
+            <div class="balance__amount hide">₦ <%= interests.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %></div>
+          </div>
+        </div>
+        <div class="balance">
+          <div class="balance__display">
+            <div class="balance__name">Dollar Balance</div>
+            <div class="hidden-balance">₦ xxxx</div>
+            <div class="balance__amount hide">₦ <%= activeUser.dollarWallet.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%></div>
+          </div>
+        </div> -->
+      </div>
+
+      <!-- PLANS -->
+      <div class="plans__sections">
+        <h4 class="green ml-4">Invest now</h4>
+
+        <div class="plans">
+          <!-- CLASSIC -->
+          <div class="plan form_classic">
+            <a href="/plans/classic">
+              <div class="icon_box classic_green">
+                <i class="bi bi-briefcase"></i>
+              </div>
+              <div class="name text-dark pb-1">Classic</div>
+              <div class="green text_sm">
+                Invest for as low as ₦ 10,000 at 1.5% per month.
+              </div>
+            </a>
+          </div>
+
+          <!-- PREMIUM -->
+          <div class="plan form_premium">
+            <a href="/plans/premium">
+              <div class="icon_box premium_green">
+                <i class="bi bi-briefcase"></i>
+              </div>
+              <div class="name text-dark pb-1">Premium</div>
+              <div class="green text_sm">
+                Invest a minimun of ₦ 400,000 at 1.8% returns monthly for 6
+                months.
+              </div>
+            </a>
+          </div>
+
+          <!-- ELITE -->
+          <div class="plan form_elite">
+            <a href="/plans/elite">
+              <div class="icon_box elite_green">
+                <i class="bi bi-briefcase"></i>
+              </div>
+              <div class="name text-dark pb-1">Elite</div>
+              <div class="green text_sm">
+                Invest ₦ 1, 000,000 at 2.3% returns monthly for 9 months - 1
+                year.
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- PLANS ENDS HERE -->
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="quick-links">
+        <h4 class="green ml-4 head">Quick links</h4>
+
+        <!-- EXCHANGE BTN -->
+        <div class="container exchange-section">
+          <a href="/exchange-dollars" class="exchange-btn btn bg-warning">Save with dollars</a>
+        </div>
+
+      </div>
+
+      <!-- SPACE -->
+      <div class="p-4"></div>
+      <div class="p-4"></div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <%- include ('../partials/footer', {active: 'dashboard'}) %>
+</div>

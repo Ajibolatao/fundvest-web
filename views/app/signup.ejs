@@ -1,0 +1,123 @@
+<div class="signup">
+  <div>
+    <!-- Include partial -->
+    <%- include ('../partials/messages') %>
+  </div>
+
+  <div>
+    <form action="/signup" method="post" class="form px-4 py-2">
+      <div class="form__head">
+        <h4 class="text-center py-2">Create an account</h4>
+      </div>
+
+      <!-- NAME GROUP -->
+      <div class="name__group">
+        <div class="form-group">
+          <input
+            type="text"
+            name="firstname"
+            class="form-control"
+            value="<%= typeof firstname != 'undefined' ? firstname : '' %>"
+            placeholder="First name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="lastname"
+            class="form-control"
+            value="<%= typeof lastname != 'undefined' ? lastname : '' %>"
+            required
+            placeholder="Last name"
+          />
+        </div>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="form-group">
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          value="<%= typeof email != 'undefined' ? email : '' %>"
+          placeholder="Email"
+          required
+        />
+      </div>
+
+      <!-- PHONE NUMBER -->
+      <div class="form-group">
+        <input
+          type="tel"
+          name="tel"
+          class="form-control"
+          value="<%= typeof tel != 'undefined' ? tel : '' %>"
+          placeholder="Phone number"
+          required
+        />
+      </div>
+
+      <!-- REFERRAL NUMBER -->
+      <div class="form-group">
+        <input
+          type="number"
+          name="referralCode"
+          class="form-control"
+          value="<%= typeof referralCode != 'undefined' ? referralCode : '' %>"
+          placeholder="Referral code - (optional)"
+        />
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="form-group">
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          required
+          placeholder="Password"
+        />
+      </div>
+
+      <!-- PASSOWORD 2 -->
+      <div class="form-group">
+        <input
+          type="password"
+          name="password2"
+          class="form-control"
+          required
+          placeholder="Verify password"
+        />
+      </div>
+
+      <!-- T&C -->
+      <div class="form-group">
+        <input
+          type="checkbox"
+          required
+          oninvalid="this.setCustomValidity('Please, accept the Terms and Condtions')"
+          oninput="this.setCustomValidity('')"
+        />
+        <small class="text-dark"
+          >I have read and agreed to these
+          <a
+            href="https://www.fundvest.ng/terms-of-service.html"
+            target="_blank"
+          >
+            terms & conditions</a
+          ></small
+        >
+      </div>
+
+      <div class="form-group d-flex justify-content-center">
+        <input type="submit" value="Register" class="btn btn-outline-primary" />
+      </div>
+      <div class="right text-center text_sm">
+        <span class="color"
+          ><a href="/signin" class="text-warning">Sign in</a></span
+        >
+      </div>
+    </form>
+  </div>
+</div>

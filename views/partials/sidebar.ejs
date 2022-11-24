@@ -1,0 +1,57 @@
+<section class="sidebar">
+  <!-- MENU -->
+  <div class="menu">
+    <ul class="menu__items">
+      <a href="/dashboard">
+        <li>
+         <% if (active === 'dashboard') { %>
+            <span class="fa__name text-warning">Dashboard</span>
+         <% } else { %>
+             <span class="fa__name">Dashboard</span>
+         <% } %>
+        </li>
+      </a>
+      <a href="/wallet">
+        <li>
+         <% if (active === 'wallet') { %>
+            <span class="fa__name text-warning">Wallet</span>
+         <% } else { %>
+               <span class="fa__name">Wallet</span>
+         <% } %>
+        </li>
+      </a>
+      <a href="/portfolio">
+        <li>
+         <% if (active === 'portfolio') { %>
+            <span class="fa__name text-warning">Portfolio</span>
+         <% } else { %>
+            <span class="fa__name">Portfolio</span>
+         <% } %>
+        </li>
+      </a>
+      <a href="/transaction">
+        <li>
+         <% if (active === 'transaction') { %>
+            <span class="fa__name text-warning">Transaction</span>
+         <% } else { %>
+            <span class="fa__name">Transaction</span>
+         <% } %>
+        </li>
+      </a>
+      <a href="/profile">
+        <li>
+         <% if (active === 'profile') { %>
+            <span class="fa__name text-warning">Profile</span>
+         <% } else { %>
+            <span class="fa__name">Profile</span>
+         <% } %>
+        </li>
+      </a>
+    </ul>
+  </div>
+
+  <!-- LOGOUT -->
+  <div class="logout">
+    <a href="/logout"> <span class="fa__name">Logout</span></a>
+  </div>
+</section>
